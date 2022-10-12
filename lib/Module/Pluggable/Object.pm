@@ -71,6 +71,7 @@ sub plugins {
     $self->{'after_instantiate'}  ||= sub { return $_[1] };
 
     # default whether to follow symlinks
+	$self->{'follow_symlinks'} = 0 if ($^O eq 'MSWin32' && !exists $self->{'follow_symlinks'});
     $self->{'follow_symlinks'} = 1 unless exists $self->{'follow_symlinks'};
 
     # check to see if we're running under test
